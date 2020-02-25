@@ -3,16 +3,21 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
-  },
+    "start": "node ./bin/www"                      
+},
   "dependencies": {
+    "axios": "^0.19.2",
     "cookie-parser": "^1.4.4",
+    "crypto-js": "^4.0.0",
     "debug": "^2.6.9",
     "ejs": "^2.6.2",
     "express": "^4.16.4",
     "firebase": "^7.8.1",
     "firebase-admin": "^8.9.2",
+    "html": "^1.0.0",
     "http-errors": "^1.6.3",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.2",
+    "randomstring": "^1.1.5"
   }
 }
