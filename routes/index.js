@@ -4,6 +4,9 @@ var admin = require("firebase-admin");
 var bodyParser = require("body-parser");
 var randomstring = require("randomstring");
 var router = express.Router();
+var Blockchain = require('./blockchain1.js');
+var Block = require('./blockchain2.js');
+var blockchain = new Blockchain();
 const serviceAccount = require("./sgh2020-b56ce-firebase-adminsdk-mwrnf-ebb7c66cd7.json");
 var firebaseConfig = {
   apiKey: "AIzaSyD6PUvJDA32jUw2JeoLqd39rGau5dPj-18",
@@ -89,7 +92,16 @@ router.all("/l",function(req,res,next){
 })
 router.all("/addblock",function(req,res){
   console.log("in addblock");
-  console.log("data" + JSON.stringify(req.body));
+  //console.log("data" + JSON.stringify(req.body));
+  var json = JSON.parse(JSON.stringify(req.body));
+  console.log(json);
   console.log("out addblock");  
+  
+blockchain.addBlock(new Block(json));
+  
+  console.log(JSON.stringify(blockchain,null,4));
+})
+router.all("/logout",function(req,res){
+  res.render("signup");
 })
 module.exports = router;

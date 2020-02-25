@@ -95,15 +95,15 @@ function verifyDocument(id) {
           disableBtn(submit_flag);
           input.readOnly = true;
           documentName = new Document(status, values, documentName, length);
-          //myDocuments.push(documentName);
-          console.log(JSON.stringify(documentName));
+          documentJson.push(documentName);
+          //console.log(documentName);
         } else {
           td_status.innerHTML +=
             '<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#e74c3c"><path d="M136.16667,21.5h-100.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v100.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h100.33333c7.91917,0 14.33333,-6.41417 14.33333,-14.33333v-100.33333c0,-7.91917 -6.41417,-14.33333 -14.33333,-14.33333zM121.83333,111.72833l-10.105,10.105l-25.72833,-25.72833l-25.72833,25.72833l-10.105,-10.105l25.72833,-25.72833l-25.72833,-25.72833l10.105,-10.105l25.72833,25.72833l25.72833,-25.72833l10.105,10.105l-25.72833,25.72833z"></path></g></g></svg>';
         }
         // console.log(myDocuments);
-        documentJson.push(JSON.stringify(documentName));
-        console.log(documentJson);
+       // documentJson.push(JSON.stringify(documentName));
+        //console.log(documentJson);
       });
     } else {
       inValidCredential();
@@ -147,7 +147,7 @@ function saveData() {
   sessionStorage.setItem("firstname", firstname);
   sessionStorage.setItem("middlename", middlename);
   sessionStorage.setItem("lastname", lastname);
-  window.location.href = '/l';
+ 
 }
 function loginData() {
   alert("in login");
@@ -166,20 +166,23 @@ function loginData() {
 // //////////////////////////////////////////////////////////////////////////////////////////////////
 
 function addData() {
-  console.log(documentJson);
-  var obj = {
-    name :'vishal',
-    mo : 'hirapara'
-  }
-  $.ajax({
+  var firstname = sessionStorage.getItem("firstname");
+  var middlename = sessionStorage.getItem("middlename");
+  var lastname = sessionStorage.getItem("lastname");
+  documentName = new Document("true",firstname, "firstname", 12);
+  documentJson.push(documentName);
+  documentName = new Document("true",middlename, "middlename", 12);
+  documentJson.push(documentName);
+  documentName = new Document("true",lastname, "lastname", 12);
+  documentJson.push(documentName);
+   $.ajax({
      type : "POST",
      url:"/addblock",
-     datatype:"json",
-     data:obj,
+     datatype:"Array",
+     data:documentJson,
      success : function(msg){
        $('.answer').html(msg);
      }
 
   })
-  
 }

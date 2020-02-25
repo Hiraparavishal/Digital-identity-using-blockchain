@@ -1,8 +1,8 @@
 const SHA256 = require('crypto-js/sha256');
-function Block(time,data,prehash='') {
+function Block(data,prehash='') {
     this.index = 0;
     this.data = data;
-    this.time = time;
+    this.time = new Date();
     this.hash = this.calculatehash();
     this.prehash = prehash;
     this.sub = 'no';

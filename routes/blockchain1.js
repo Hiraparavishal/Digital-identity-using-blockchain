@@ -1,5 +1,5 @@
 const SHA256 = require('crypto-js/sha256');
-var block = require('./blockchain2.js/index.js');
+var block = require('./blockchain2.js');
 
 
 
