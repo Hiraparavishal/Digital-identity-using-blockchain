@@ -6,7 +6,13 @@ var randomstring = require("randomstring");
 var router = express.Router();
 var Blockchain = require('./blockchain1.js');
 var Block = require('./blockchain2.js');
+var mergeJSON = require("merge-json") ;
+const Nexmo = require('nexmo');
 var blockchain = new Blockchain();
+var dgdtn = randomstring.generate({
+  length: 12,
+  charset: 'numeric'
+});
 const serviceAccount = require("./sgh2020-b56ce-firebase-adminsdk-mwrnf-ebb7c66cd7.json");
 var firebaseConfig = {
   apiKey: "AIzaSyD6PUvJDA32jUw2JeoLqd39rGau5dPj-18",
@@ -19,10 +25,13 @@ var firebaseConfig = {
   measurementId: "G-10X6YVWRZP"
 };
 router.get("/", function(req, res, next) {
+  res.render("home");
+});
+router.get("/signup", function(req, res, next) {
   res.render("signup");
 });
 router.post("/Adduser", function(req, res, next) {
-  var dgdtn = randomstring.generate();
+  
   if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
@@ -38,14 +47,27 @@ router.post("/Adduser", function(req, res, next) {
     }
     
     var result = ref.push(obj);
-    setTimeout(function(){
+
+ const nexmo = new Nexmo({
+  apiKey: '84be2aca',
+  apiSecret: 'J1eKE7Nrj9kDKwwa',
+});
+
+const from = 'Nexmo';
+const to = '919974989295';
+const text = 'Hello ' + req.body.fname +" "+req.body.mname+" "+req.body.lname+" Welcome to DIGIDITY. You are Signed up! Your DIGIDITY number is "+ dgdtn+" use it to login";
+nexmo.message.sendSms(from, to, text);
+
+/*setTimeout(function(){
       var data = {
         firstname: req.body.fname,
         middlename:req.body.mname,
         lastname:req.body.lname,
+      
       }
       res.render("profile",{Data : data});
-    },1000);
+    },1000);*/
+    res.render("login",{title : ' '});
 });
 router.post("/AuthUser", function(req, res, next) {
   if (!firebase.apps.length) {
@@ -86,22 +108,44 @@ router.all("/l",function(req,res,next){
   var firstname = sessionStorage.getItem("firstname");
   var middlename = sessionStorage.getItem("middlename");
   var lastname = sessionStorage.getItem("lastname");
-  //console.log(firstname+middlename+lastname);
   console.log(firstname + middlename + lastname);
   console.log("out");
 })
 router.all("/addblock",function(req,res){
   console.log("in addblock");
-  //console.log("data" + JSON.stringify(req.body));
+  
   var json = JSON.parse(JSON.stringify(req.body));
-  console.log(json);
-  console.log("out addblock");  
-  
-blockchain.addBlock(new Block(json));
-  
+  var obj = {
+    dgdtnumber : dgdtn
+  }
+  var result = mergeJSON.merge(json, obj) ;
+  console.log(result);
+  blockchain.addBlock(new Block(result));
   console.log(JSON.stringify(blockchain,null,4));
+  
+  console.log("out addblock");  
 })
 router.all("/logout",function(req,res){
   res.render("signup");
 })
+router.all("/Profile",function(req,res){
+  // console.log("inprofile");
+  // var json = JSON.parse(JSON.stringify(req.body));
+  // console.log(json);
+  // res.render("user",{title : 'no'});
+  console.log("in profile" + dgdtn);
+  var length = blockchain.getLength();
+  for  (i=1;i<length;i++){
+             const obj = JSON.parse(JSON.stringify(blockchain.getBlock(i),null,4));
+                 if(obj.data.dgdtnumber == dgdtn){
+                   console.log("in for");
+                  hash = obj.hash;
+                  var data = JSON.parse(JSON.stringify(blockchain.getMainBlock(hash),null,4));
+                  console.log(data);
+                  res.render("user",{Data : data});
+    }
+  }
+  console.log("out profile");
+})
+
 module.exports = router;

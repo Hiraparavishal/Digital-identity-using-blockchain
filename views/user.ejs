@@ -1,0 +1,104 @@
+<!-- this is the markup. you can change the details (your own name, your own avatar etc.) but don’t change the basic structure! -->
+<html>
+  <head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/extra.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/util.css">
+    <link rel="Stylesheet" href="stylesheets/user.css" />
+  </head>
+  <body onload="CreateTableFromJSON()">
+	<header class="site-header">
+        <div class="wrapper p-l-20 ">
+            <h1 class="title">Digidity</h1>
+            <span class="profile-pic">
+            </span>
+            <span class="loguser">John Doe</span>
+            <nav class="navigation navigationright">   
+              <ul>
+                <li><a href="#">Edit</a></li>
+                <li><a href="#">Documents</a></li>
+                <li><a href="#">Logout</a></li>
+              </ul>
+            </nav>
+        </div>
+	  </header>
+	  
+	  <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	  <!-- Card -->
+
+
+    <div class="center">
+      <div class="card">
+        <div class="additional">
+			<span class="profile-pic">
+            </span>
+		</div>
+        <div class="general">
+          <table>
+            <tr>
+              <td>First Name:</td>
+              <td><%= Data.data.firstname %></td>
+            </tr>
+            <tr>
+              <td>Middle Name:</td>
+              <td><%= Data.data.middlename %></td>
+            </tr>
+            <tr>
+              <td>Last Name:</td>
+              <td><%= Data.data.lastname %></td>
+            </tr>
+            <tr>
+              <td style="position: relative; bottom: 10px;">Address:</td>
+              <td style="white-space: pre-line;">
+                01,Saivrund Bunglows, Nr. Umabahavan, Borsad Chowkdi, Anand
+              </td>
+            </tr>
+            <tr>
+              <td>Aadharcard</td>
+              <td><%= Data.data.aadharcard %></td>
+            </tr>
+            <tr>
+              <td>Birth Certificate</td>
+              <td><%= Data.data.birthcertificate %></td>
+            </tr>
+            <tr>
+              <td>Leaving Certificate:</td>
+              <td><%= Data.data.leavingcertificate %></td>
+            </tr>
+            <tr>
+              <td>Caste Certificate</td>
+              <td><%= Data.data.castecertificate%></td>
+            </tr>
+            <tr>
+              <td>Incomeproof Certificate:</td>
+              <td><%= Data.data.incomeproofcertificate%></td>
+            </tr>
+            <tr>
+              <td>Pan Number:</td>
+              <td><%= Data.data.pannumber%></td>
+            </tr>
+            <tr>
+              <td>Driving License:</td>
+              <td><%= Data.data.drivinglicense%></td>
+            </tr>
+            <tr>
+              <td>Passport:</td>
+              <td><%= Data.data.Passport%></td>
+            </tr>
+		  </table>
+        </div>
+	  </div>
+		<div class="limiter">
+			<div class="container-table100">
+				<div class="wrap-table100" id="display-table" style="box-shadow: 0 8px 16px 8px rgba(0,0,0,0.4);">
+				<div id="display-table"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="javascripts/user.js"></script>
+  </body>
+</html>

@@ -9,17 +9,17 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/util.css">
 </head>
 
-<body>
+<body onload="getHeadInfo()">
     <header class="site-header">
         <div class="wrapper p-l-20 ">
             <h1 class="title">Digidity</h1>
             <span class="profile-pic">
             </span>
-            <span class="loguser">John Doe</span>
+            <span class="loguser" id="user">John Doe</span>
             <nav class="navigation navigationright">   
               <ul>
                 <li><a href="#">Edit</a></li>
-                <li><a href="#">Documents</a></li>
+                <li><a href="/Profile">Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </nav>

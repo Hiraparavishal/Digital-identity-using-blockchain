@@ -9,6 +9,16 @@ class Document {
     this.length = length;
   }
 }
+
+function getHeadInfo() {
+  var firstname = sessionStorage.getItem("firstname");
+  //var middlename = sessionStorage.getItem("middlename");
+  var lastname = sessionStorage.getItem("lastname");
+  var username = document.getElementById("user");
+  username.innerHTML = firstname + " " + lastname;
+  console.log(username);
+}
+
 function verifyCredential(dname, value, callback) {
   var result;
   var firstname = sessionStorage.getItem("firstname");
@@ -45,6 +55,7 @@ function verifyCredential(dname, value, callback) {
   );
 
   request.onload = function() {
+    
     var data = JSON.parse(this.response);
     console.log(data);
     if (data == true) {
@@ -74,9 +85,6 @@ function verifyDocument(id) {
   if (values === "" || values === null) {
     nullCredential();
   } else {
-    var isValid = validCredential(length);
-
-    if (isValid) {
       var dname = documentName;
       verifyCredential(dname, values, function(result) {
         console.log(result);
@@ -91,8 +99,8 @@ function verifyDocument(id) {
         if (status) {
           td_status.innerHTML +=
             '<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#57b846"><path d="M134.16,13.76h-96.32c-13.27625,0 -24.08,10.80375 -24.08,24.08v96.32c0,13.27625 10.80375,24.08 24.08,24.08h96.32c13.27625,0 24.08,-10.80375 24.08,-24.08v-96.32c0,-13.27625 -10.80375,-24.08 -24.08,-24.08zM79.41563,118.49188l-33.25781,-31.00031l4.68969,-5.03906l27.97688,26.09563l45.83531,-54.08594l5.24063,4.44781z"></path></g></g></svg>';
-          //button.disabled = true;
-          disableBtn(submit_flag);
+          button.disabled = true;
+          //disableBtn(submit_flag);
           input.readOnly = true;
           documentName = new Document(status, values, documentName, length);
           documentJson.push(documentName);
@@ -105,9 +113,6 @@ function verifyDocument(id) {
        // documentJson.push(JSON.stringify(documentName));
         //console.log(documentJson);
       });
-    } else {
-      inValidCredential();
-    }
   }
 }
 
@@ -119,27 +124,27 @@ function nullCredential() {
 function inValidCredential() {
   console.log("Invalid Credentials!!!!");
 }
-function validCredential(length) {
-  if (!(length == 12)) {
-    return false;
-  } else {
-    return true;
-  }
-}
+// function validCredential(length) {
+//   if (!(length == 12)) {
+//     return false;
+//   } else {
+//     return true;
+//   }
+// }
 
 function disableBtn(submit_flag) {
   if (submit_flag) {
     console.log("Submitted");
-    submit_btn.disabled = false;
+    submit_btn.disabled = true;
   } else {
     console.log("Not Active");
-    submit_btn.disabled = true;
+    submit_btn.disabled = false;
   }
 }
 
-function createBlock() {
-  disableBtn(submit_flag);
-}
+// function createBlock() {
+//   disableBtn(submit_flag);
+// }
 function saveData() {
   var firstname = document.getElementById("fname").value;
   var middlename = document.getElementById("mname").value;
@@ -147,11 +152,12 @@ function saveData() {
   sessionStorage.setItem("firstname", firstname);
   sessionStorage.setItem("middlename", middlename);
   sessionStorage.setItem("lastname", lastname);
+  
+  console.log(username);
  
 }
 function loginData() {
-  alert("in login");
-  var dgdt = document.getElementById("digidity").value;
+   var dgdt = document.getElementById("digidity").value;
   var request = new XMLHttpRequest();
   request.open("GET", "http://localhost:5000/dgdt/" + dgdt, true);
   request.onload = function() {
@@ -159,6 +165,11 @@ function loginData() {
     sessionStorage.setItem("firstname", data.firstname);
     sessionStorage.setItem("middlename", data.middlename);
     sessionStorage.setItem("lastname", data.lastname);
+    var firstname = sessionStorage.getItem("firstname");
+  var middlename = sessionStorage.getItem("middlename");
+  var lastname = sessionStorage.getItem("lastname");
+  var username = document.getElementById("user");
+  username.innerHTML = firstname + " " + lastname;
   };
   request.send();
 }
@@ -166,23 +177,47 @@ function loginData() {
 // //////////////////////////////////////////////////////////////////////////////////////////////////
 
 function addData() {
-  var firstname = sessionStorage.getItem("firstname");
-  var middlename = sessionStorage.getItem("middlename");
-  var lastname = sessionStorage.getItem("lastname");
-  documentName = new Document("true",firstname, "firstname", 12);
-  documentJson.push(documentName);
-  documentName = new Document("true",middlename, "middlename", 12);
-  documentJson.push(documentName);
-  documentName = new Document("true",lastname, "lastname", 12);
-  documentJson.push(documentName);
-   $.ajax({
-     type : "POST",
-     url:"/addblock",
-     datatype:"Array",
-     data:documentJson,
-     success : function(msg){
-       $('.answer').html(msg);
-     }
+  if (!submit_flag) {
+    console.log("Deactivate");
+  } else {
+    var firstname = sessionStorage.getItem("firstname");
+    var middlename = sessionStorage.getItem("middlename");
+    var lastname = sessionStorage.getItem("lastname");
+    documentName = new Document("true",firstname, "firstname", 12);
+    documentJson.push(documentName);
+    documentName = new Document("true",middlename, "middlename", 12);
+    documentJson.push(documentName);
+    documentName = new Document("true",lastname, "lastname", 12);
+    documentJson.push(documentName);
+    $.ajax({
+      type : "POST",
+      url:"/addblock",
+      datatype:"Array",
+      data:documentJson,
+      success : function(msg){
+        $('.answer').html(msg);
+      }
 
-  })
+    })
+    var obj = {
+        fname : firstname,
+        mname : middlename,
+        lname : lastname
+    }
+    $.ajax({
+        type : "POST",
+        url:"/Profile",
+        datatype:"text",
+        data:obj,
+        success : function(msg){
+          $('.answer').html(msg);
+        }
+  
+    })
+    while(documentJson.length > 0){
+      documentJson.pop();
+    }
+    created_flag = true;
+    disableBtn(created_flag);
+  }
 }

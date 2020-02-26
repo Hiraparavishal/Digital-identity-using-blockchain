@@ -1,0 +1,93 @@
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-SemiBold;
+  src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
+}
+
+html, body {
+
+  font-family: Abel, Arial, Verdana, sans-serif;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.card {
+  width: 800px;
+  height: 450px;
+  background-color: #fff;
+  background: linear-gradient(#f8f8f8, #fff);
+  box-shadow: 0 8px 16px 8px rgba(0,0,0,0.4);
+  border-radius: 10px;
+  position: relative;
+  margin: 1.5rem;
+  top: 350px;
+  left: 165px;
+}
+
+.card h1 {
+  text-align: center;
+}
+
+.card .additional {
+  position: absolute;
+  width: 270px;
+  height: 100%;
+  background: #57b846;
+  transition: width 0.4s;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  }
+
+.card .general {
+  width: 500px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 2rem;
+  padding-top: 1em;
+}
+
+
+.card img{
+  padding:100%;
+  width:200px;
+  height:200px;
+}
+
+.card tr{
+    white-space: nowrap;
+    font-size: 22px;
+    font-weight: bolder;
+  }
+   .card .profile-pic {
+      height: 175px;
+      width: 175px;
+      background-color: #bbb;
+      border-radius: 50%;
+      position: relative;
+      bottom: -100px;
+      left: -49px;
+      float: right;
+ }
