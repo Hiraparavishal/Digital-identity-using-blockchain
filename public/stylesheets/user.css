@@ -31,16 +31,16 @@ html, body {
 }
 
 .card {
-  width: 800px;
-  height: 450px;
+  width: 850px;
+  height: 700px;
   background-color: #fff;
   background: linear-gradient(#f8f8f8, #fff);
   box-shadow: 0 8px 16px 8px rgba(0,0,0,0.4);
   border-radius: 10px;
   position: relative;
   margin: 1.5rem;
-  top: 350px;
-  left: 165px;
+  top: 150px;
+  left: 20px;
 }
 
 .card h1 {
@@ -61,8 +61,8 @@ html, body {
   width: 500px;
   height: 100%;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 25;
+  right: 45;
   z-index: 1;
   box-sizing: border-box;
   padding: 2rem;
@@ -80,14 +80,20 @@ html, body {
     white-space: nowrap;
     font-size: 22px;
     font-weight: bolder;
+    padding-bottom: 10em;
   }
-   .card .profile-pic {
-      height: 175px;
-      width: 175px;
-      background-color: #bbb;
-      border-radius: 50%;
-      position: relative;
-      bottom: -100px;
-      left: -49px;
-      float: right;
+.card td{
+  padding-right: 1em;
+}
+
+.card .profile-pic {
+    height: 175px;
+    width: 175px;
+    position: relative;
+    bottom: -150px;
+    left: -49px;
+    float: right;
+    background-image: url("../images/user_icon.png");
+    background-size: 175px 175px;
+    
  }

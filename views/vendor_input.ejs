@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/vendor_input.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/util.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrapper p-l-20 ">
+        <h1 class="title">Digidity</h1>
+        <span class="profile-pic"> </span>
+        <span class="loguser">John Doe</span>
+        <nav class="navigation navigationright">
+          <ul>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="limiter">
+      <div class="container-table100">
+        <div class="digidity_input">
+          <span>Digidity Number</span>
+          <form action="/sendotp" method="POST">
+            <input id="dgdt" type="text" placeholder="Enter DIGIDITY number" name="dgdtn" />
+            <button id="dgdt_submit" onClick="sendOTP()">Submit</button>
+          </form>
+          <form action="/checkotp" method="POST">
+            <input id="otp" type="text" placeholder="Enter OTP" name="otp" style="display: none;"/>
+            <button id="otp_submit" onClick="verifyOTP()" style="display: none;">Submit OTP</button>
+          </form>
+         
+        </div>
+    </div>
+    <script src="javascripts/vendor_input.js"></script>
+  </body>
+</html>

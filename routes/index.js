@@ -13,6 +13,10 @@ var dgdtn = randomstring.generate({
   length: 12,
   charset: 'numeric'
 });
+var otp = randomstring.generate({
+  length: 6,
+  charset: 'numeric'
+});
 const serviceAccount = require("./sgh2020-b56ce-firebase-adminsdk-mwrnf-ebb7c66cd7.json");
 var firebaseConfig = {
   apiKey: "AIzaSyD6PUvJDA32jUw2JeoLqd39rGau5dPj-18",
@@ -129,10 +133,7 @@ router.all("/logout",function(req,res){
   res.render("signup");
 })
 router.all("/Profile",function(req,res){
-  // console.log("inprofile");
-  // var json = JSON.parse(JSON.stringify(req.body));
-  // console.log(json);
-  // res.render("user",{title : 'no'});
+  
   console.log("in profile" + dgdtn);
   var length = blockchain.getLength();
   for  (i=1;i<length;i++){
@@ -146,6 +147,83 @@ router.all("/Profile",function(req,res){
     }
   }
   console.log("out profile");
+})
+router.all("/vender",function(req,res){
+  res.render("vendors");
+})
+router.all("/venderlogin",function(req,res){
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  var database = firebase.database();
+  var ref = database.ref("Vendor");
+  ref
+    .orderByChild("email")
+    .equalTo(req.body.digidity)
+    .on(
+      "child_added",
+      function(snapshot) {
+          
+          var json = JSON.stringify(snapshot);
+          var FinalJson=JSON.parse(json);
+          if (FinalJson.password == req.body.password){
+            console.log("login success");
+          res.render("vendor_input");
+          }else{
+            console.log("login faild");
+            res.render("vendors");
+          }
+     },
+      function(errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
+    setTimeout(function(){
+      res.render("vendors");
+    },5000);
+  
+})
+router.all("/sendotp",function(req,res){
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  var database = firebase.database();
+  var ref = database.ref("Auth");
+  ref
+    .orderByChild("digiditynumber")
+    .equalTo(req.body.dgdtn)
+    .on(
+      "child_added",
+      function(snapshot) {
+          
+          var json = JSON.stringify(snapshot);
+          var FinalJson=JSON.parse(json);
+          console.log(FinalJson.mobilenumber);
+          const nexmo = new Nexmo({
+            apiKey: '84be2aca',
+            apiSecret: 'J1eKE7Nrj9kDKwwa',
+          });
+          
+          const from = 'Nexmo';
+          const to = '919974989295';
+          const text = otp +" - is your OTP to login";
+          nexmo.message.sendSms(from, to, text);
+          
+     },
+      function(errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
+    
+  
+})
+router.all("/checkotp",function(req,res){
+  var rotp = req.body.otp;
+   if(rotp == otp ){
+     console.log("otp same");
+   }else{
+    console.log("otp not same");
+   }
 })
 
 module.exports = router;
