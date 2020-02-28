@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGIDITY</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/user_data.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/util.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="wrapper p-l-20 ">
+            <h1 class="title">Digidity</h1>
+            <span class="profile-pic">
+            </span>
+            <span class="loguser">John Doe</span>
+            <nav class="navigation navigationright">   
+              <ul>
+                <!-- <li><a href="#">Edit</a></li> -->
+                <!-- <li><a href="#">Documents</a></li> -->
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </nav>
+        </div>
+      </header>
+      <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+      <!-- -------------------------------------------------input ----------------------------------------------------------->
+
+   
+
+      <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+      <!-----------------------------------------------------table----------------------------------------------------------->
+
+
+      <div class="limiter">
+        
+        <div class="container-table100">
+        <div class="wrap-table100" style="box-shadow: 0 8px 16px 8px rgba(0,0,0,0.4);">
+                
+                <table id="table" class="table" style="border-collapse: collapse;">
+                  <tbody>
+                  <tr class="row header">
+                    <th class="cell" style="padding-left: 40px;">
+                      Sr.no
+                    </th>
+                    <th class="thead">
+                      Document
+                    </th>
+                    <th class="cell">
+                      Data
+                    </th>
+                  </tr>
+      
+                  <tr class="row" id="1">
+                    <td class="cell" data-title="Sr. no">
+                      1
+                    </td>
+                    <td class="cell" data-title="Document">
+                      Aadhar Card
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.aadharcard %>
+                    </td>
+                  </tr>
+      
+                  <tr class="row" id="2">
+                    <td class="cell" data-title="Sr. no">
+                      2
+                    </td>
+                    <td class="cell" data-title="Document">
+                      Voter ID
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.voterid %>
+                    </td>
+                    
+                  </tr>
+      
+                  <tr class="row" id="3">
+                    <td class="cell" data-title="Sr. no">
+                      3
+                    </td>
+                    <td class="cell" data-title="Document">
+                      Birth Certificate
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.birthcertificate %>
+                    </td>
+                    
+                  </tr>
+      
+                  <tr class="row" id="4">
+                    <td class="cell" data-title="Sr. no">
+                      4
+                    </td>
+                    <td class="cell" data-title="Document">
+                      Leaving Certificate
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.leavingcertificate %>
+                    </td>
+                    
+                  </tr>
+      
+                  <tr class="row" id="5">
+                    <td class="cell" data-title="Sr. no">
+                      5
+                    </td>
+                    <td class="cell" data-title="Document">
+                      Degree Certificate
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.degreecertificate %>
+                    </td>
+                    
+                  </tr>
+      
+                  <tr class="row" id="6">
+                    <td class="cell" data-title="Sr. no">
+                      6
+                    </td>
+                    <td class="cell" data-title="Document">
+                      Caste Certificate
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.castecertificate %>
+                    </td>
+                    
+                  </tr>
+      
+                  <tr class="row" id="7">
+                    <td class="cell" data-title="Sr. no">
+                      7
+                    </td>
+                    <td class="cell" data-title="Document">
+                      Incomeproof Certificate
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.incomeproofcertificate %>
+                    </td>
+                    
+                  </tr>
+      
+                  <tr class="row" id="8">
+                    <td class="cell" data-title="Sr. no">
+                      8
+                    </td>
+                    <td class="cell" data-title="Document">
+                      PAN Number
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.pannumber %>
+                    </td>
+                    
+                      
+                  </tr>
+                  <tr class="row" id="9">
+                    <td class="cell" data-title="Sr. no">
+                      9
+                    </td>
+                    <td class="cell" data-title="Document">
+                      Driving License
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.drivinglicense %>
+                    </td>
+                    
+                  </tr>
+                  <tr class="row" id="10">
+                    <td class="cell" data-title="Sr. no">
+                      10
+                    </td>
+                    <td class="cell" data-title="Document">
+                      Passport
+                    </td>
+                    <td class="cell" data-title="Data">
+                      <%= OBJ.passport %>
+                    </td>                   
+                  </tr>
+                </tbody>
+                </table>
+              </div>
+            </div>
+            
+          </div>
+          <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+          <script src="javascripts/user_data.js"></script>
+        <script src="javascripts/script.js"></script>
+        <script src="javascripts/profile.js"></script>
+</body>
+</html>

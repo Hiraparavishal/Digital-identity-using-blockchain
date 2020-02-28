@@ -20,6 +20,7 @@
     "morgan": "^1.9.1",
     "nexmo": "^2.6.0",
     "nodemon": "^2.0.2",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "sessionstorage": "^0.1.0"
   }
 }

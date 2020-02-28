@@ -19,15 +19,19 @@ BlockChain.prototype.getLastBlock= function(){
     return this.chain[n];
   }
     BlockChain.prototype.getSubBlock = function(hash){
-        for(this.i=0;this.i<this.chain.length+1;this.i=this.i+1){
+      var data = [];
+        for(this.i=1;this.i<this.chain.length;this.i=this.i+1){
              
             if(this.chain[this.i].prehash == hash){
                 if(this.chain[this.i].sub == 'yes' ){
-                     return this.chain[this.i];
+                     //return this.chain[this.i];
+                     var json = JSON.parse(JSON.stringify(this.chain[this.i]));
+                     data.push(json);
                 }
                 
              }
          }
+         return data;
     }
    BlockChain.prototype.getMainBlock= function(hash){
     for(this.i=0;this.i<this.chain.length+1;this.i=this.i+1){
