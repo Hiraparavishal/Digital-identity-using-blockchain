@@ -1,6 +1,6 @@
 # Digital-identity-using-blockchain
- cerate your digital identity using blockchain. firast you create youe account by your self. 
- you upload your document's number as per order and click to submit at that time our databse is show this document as per his name is     right or wrong is all the document are true then that will push into our blockchain  
+ create your digital identity using blockchain. first of all  you create your profile by your self. 
+ after ctreting profile you upload your document's as per order and click to submit at that time our databse is verify this document as    per our databse or no if right than all the document are  push into blockchain.  
  
 #for start
  npm start 
